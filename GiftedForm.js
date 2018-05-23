@@ -10,6 +10,7 @@ const WidgetMixin = require('./mixins/WidgetMixin');
 const TextInputWidget = require('./widgets/TextInputWidget');
 const TextAreaWidget = require('./widgets/TextAreaWidget');
 const SwitchWidget = require('./widgets/SwitchWidget');
+const SliderWidget = require('./widgets/SliderWidget');
 const SelectWidget = require('./widgets/SelectWidget');
 const OptionWidget = require('./widgets/OptionWidget');
 const SelectCountryWidget = require('./widgets/SelectCountryWidget');
@@ -34,6 +35,7 @@ const GiftedForm = createReactClass({
     TextInputWidget,
     TextAreaWidget,
     SwitchWidget,
+    SliderWidget,
     SelectWidget,
     OptionWidget,
     SelectCountryWidget,

@@ -9,7 +9,7 @@ module.exports = {
 
   getInitialState() {
     return {
-      validationErrorMessage: null,
+      validationErrorMessage: null
     };
   },
 
@@ -43,7 +43,7 @@ module.exports = {
       navigator: null,
       onFocus: () => {},
       onBlur: () => {},
-      validateOnEmpty: false,
+      validateOnEmpty: false
     };
   },
 
@@ -55,6 +55,7 @@ module.exports = {
     }
     // get value from store
     var formState = GiftedFormManager.stores[this.props.formName];
+
     if (typeof formState !== 'undefined') {
       if (typeof formState.values[this.props.name] !== 'undefined') {
         this.setState({

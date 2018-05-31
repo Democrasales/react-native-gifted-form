@@ -2,6 +2,7 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import {
   View,
+  AsyncStorage
 } from 'react-native';
 
 var WidgetMixin = require('../mixins/WidgetMixin.js');
@@ -25,6 +26,26 @@ module.exports = createReactClass({
     });
   },
 
+  async addToStorage(key, type, val) {
+    let hash = await AsyncStorage.getItem(key);
+    if (hash === null) {
+      hash = {}
+    } else {
+      hash = JSON.parse(hash)
+    }
+    hash[type] = val
+
+    try {
+      await AsyncStorage.setItem(key, JSON.stringify(hash))
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
+  async removeFromStorage(key) {
+    await AsyncStorage.removeItem(key);
+  },
+
   render() {
     this._childrenWithProps = React.Children.map(this.props.children, (child, idx) => {
       var val = child.props.value || child.props.title;
@@ -43,6 +64,9 @@ module.exports = createReactClass({
         ref: this.props.name+'{'+val+'}',
         value: this.props.multiple ? false : val,
         unSelectAll: this.unSelectAll,
+        addToStorage: this.addToStorage,
+        removeFromStorage: this.removeFromStorage,
+        formKey: this.props.name,
 
         multiple: this.props.multiple,
         onClose: this.props.onClose, // got from ModalWidget

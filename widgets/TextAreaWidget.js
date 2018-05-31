@@ -11,13 +11,13 @@ var WidgetMixin = require('../mixins/WidgetMixin.js');
 
 module.exports = createReactClass({
   mixins: [WidgetMixin],
-  
+
   getDefaultProps() {
     return {
       type: 'TextAreaWidget',
     };
   },
-  
+
   render() {
     return (
       <View style={this.getStyle('textAreaRow')}>
@@ -26,7 +26,7 @@ module.exports = createReactClass({
           multiline={true}
 
           {...this.props}
-          
+
           onFocus={() => this.props.onFocus(true)}
           onChangeText={this._onChange}
           value={this.state.value}
@@ -34,7 +34,7 @@ module.exports = createReactClass({
       </View>
     );
   },
-  
+
   defaultStyles: {
     textAreaRow: {
       backgroundColor: '#FFF',
@@ -50,5 +50,5 @@ module.exports = createReactClass({
       flex: 1,
     },
   },
-  
+
 });

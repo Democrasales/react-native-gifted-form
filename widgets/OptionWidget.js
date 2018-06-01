@@ -35,7 +35,6 @@ module.exports = createReactClass({
     } else {
       return false
     }
-
   },
 
   componentDidMount() {

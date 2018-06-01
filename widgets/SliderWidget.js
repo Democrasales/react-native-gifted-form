@@ -3,7 +3,8 @@ import createReactClass from 'create-react-class';
 import {
   View,
   PixelRatio,
-  Text
+  Text,
+  AsyncStorage
 } from 'react-native';
 import Slider from 'react-native-slider'
 
@@ -36,6 +37,31 @@ module.exports = createReactClass({
     };
   },
 
+  async _addToAsyncStorage(value) {
+    try {
+      await AsyncStorage.setItem(this.props.name, JSON.stringify(value))
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
+  async _checkIfSelected() {
+    let result = await AsyncStorage.getItem(this.props.name);
+    parsedResult = JSON.parse(result)
+
+    if (parsedResult !== null)  {
+      this._onChange(parsedResult);
+      this.props.onChange && this.props.onChange(parsedResult);
+      this.setState({
+        value: parsedResult
+      })
+    }
+  },
+
+  componentDidMount() {
+    this._checkIfSelected();
+  },
+
   render() {
     return (
       <View>
@@ -43,6 +69,7 @@ module.exports = createReactClass({
           onValueChange={(value) => {
             this._onChange(value);
             this.props.onChange && this.props.onChange(value);
+            this._addToAsyncStorage(value);
           }}
           step={1}
           minimumValue={1}

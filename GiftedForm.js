@@ -15,6 +15,7 @@ const SelectWidget = require('./widgets/SelectWidget');
 const OptionWidget = require('./widgets/OptionWidget');
 const SelectCountryWidget = require('./widgets/SelectCountryWidget');
 const DatePickerIOSWidget = require('./widgets/DatePickerIOSWidget');
+const DatePickerWidget = require('./widgets/DatePickerWidget');
 const ModalWidget = require('./widgets/ModalWidget');
 const SubmitWidget = require('./widgets/SubmitWidget');
 const SeparatorWidget = require('./widgets/SeparatorWidget');
@@ -32,6 +33,7 @@ const GiftedForm = createReactClass({
   mixins: [ ContainerMixin ],
 
   statics: {
+    DatePickerWidget,
     TextInputWidget,
     TextAreaWidget,
     SwitchWidget,
@@ -80,6 +82,7 @@ const GiftedForm = createReactClass({
   },
 
   componentWillMount() {
+    GiftedFormManager.handleClearAsyncStorage()
     // register validators
     for (let key in this.props.validators) {
       if (this.props.validators.hasOwnProperty(key)) {

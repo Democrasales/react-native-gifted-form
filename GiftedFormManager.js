@@ -1,3 +1,4 @@
+import { AsyncStorage } from 'react-native';
 var validatorjs = require('validator');
 
 function doValidateOne(k = '', value = undefined, validators = {}) {
@@ -302,6 +303,20 @@ class Manager {
     this.initForm(obj.formName);
     if (typeof this.stores[obj.formName].values[obj.name] === 'undefined') {
       this.stores[obj.formName].values[obj.name] = obj.value;
+    }
+  }
+
+  async handleClearAsyncStorage() {
+    let value
+    try {
+      values = await AsyncStorage.getAllKeys()
+      values.map((value) => {
+        if (value !== 'user') {
+          AsyncStorage.removeItem(value)
+        }
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 

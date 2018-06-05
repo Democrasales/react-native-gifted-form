@@ -58,7 +58,7 @@ module.exports = createReactClass({
     }
   },
 
-  componentDidMount() {
+  componentWillMount() {
     this._checkIfSelected();
   },
 

@@ -205,7 +205,6 @@ module.exports = createReactClass({
   },
 
   _getDisplayableValue() {
-    console.log(this.props.displayValue, 'displayable')
     if (this.props.displayValue !== '') {
       if (typeof GiftedFormManager.stores[this.props.formName] !== 'undefined') {
         if (typeof GiftedFormManager.stores[this.props.formName].values !== 'undefined') {

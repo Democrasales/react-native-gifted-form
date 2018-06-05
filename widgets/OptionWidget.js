@@ -11,8 +11,6 @@ import {
 
 var WidgetMixin = require('../mixins/WidgetMixin.js');
 
-
-
 module.exports = createReactClass({
   mixins: [WidgetMixin],
 
@@ -37,7 +35,7 @@ module.exports = createReactClass({
     }
   },
 
-  componentDidMount() {
+  componentWillMount() {
     this._checkIfSelected();
   },
 

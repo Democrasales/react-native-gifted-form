@@ -24,6 +24,16 @@ module.exports = createReactClass({
   async _checkIfSelected() {
     let result = await AsyncStorage.getItem(this.props.formKey);
     parsedResult = JSON.parse(result)
+    
+    if (parsedResult === null) {
+      if (this.props.isSelected === true) {
+        this.setState({
+          value: true
+        })
+        console.log(this.props.formKey, this.props.title)
+        this.props.addToStorage(this.props.formKey, this.props.title, true)
+      }
+    }
 
     if (parsedResult[this.props.title] === true) {
       this.setState({

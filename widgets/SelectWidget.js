@@ -28,6 +28,7 @@ module.exports = createReactClass({
 
   async addToStorage(key, type, val) {
     let hash = await AsyncStorage.getItem(key);
+
     if (hash === null) {
       hash = {}
     } else {
@@ -67,6 +68,7 @@ module.exports = createReactClass({
         addToStorage: this.addToStorage,
         removeFromStorage: this.removeFromStorage,
         formKey: this.props.name,
+        isSelected: child.props.isSelected,
 
         multiple: this.props.multiple,
         onClose: this.props.onClose, // got from ModalWidget
